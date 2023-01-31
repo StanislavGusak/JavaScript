@@ -1,27 +1,63 @@
+"use strict"
 
-const productList = [
-    { name: 'milk', price: 37, item: 1, bought: true },
-    { name: 'bread', price: 25, item: 2, bought: false },
-    { name: 'fruit', price: 73, item: 7, bought: true },
-    { name: 'chees', price: 280, item: 2, bought: false },
-    { name: 'water', price: 17, item: 6, bought: true },
-];
+let milk = { 
+    pName: 'Milk',
+    price: 37,
+    item: 1,
+    bought: true,
+    summa: function () { 
+        return this.item * this.price;
+    },
+};
+milk.summa()
+milk.summa = milk.summa()
+let bread = {
+    pName: 'Bread',
+    price: 25,
+    item: 2,
+    bought: false,
+    summa: function () { 
+        return this.item * this.price;
+    },
+};
+bread.summa()
+bread.summa = bread.summa()
+let fruit = { 
+    pName: 'Fruit',
+    price: 73,
+    item: 7,
+    bought: true,
+    summa: function () { 
+        return this.item * this.price;
+    },
+};
+fruit.summa()
+fruit.summa = fruit.summa()
+let chees = {
+    pName: 'Chees',
+    price: 97,
+    item: 2,
+    bought: false,
+    summa: function () { 
+        return this.item * this.price;
+    },
+};
+chees.summa()
+chees.summa = chees.summa()
+ let water = { 
+    pName: 'Water',
+    price: 17,
+    item: 6,
+    bought: true,
+    summa: function () { 
+        return this.item * this.price;
+    },
+};
+water.summa()
+water.summa = water.summa()
+const productList = [milk, bread, fruit, chees, water];
 productList.forEach(elem => console.log(elem));
 // ------------------------------------------------------------------------------------------------
-
-// Сума придбаних продуктів
-function sumProduct() {
-    for (let i = 0; i < productList.length; i++) {
-        if (productList[i].bought === true) {
-            return productList[i].item * productList[i].price;
-        } else if (productList[i].bought === false) {
-            return 'Not added';
-        }
-    };
-}
-sumProduct()
-console.log(sumProduct());
-// -------------------------------------------------------------------------------------------------
 
 // Показ продуктів що не придбані на початку списку
 const list = [];
@@ -39,67 +75,39 @@ console.log(list);
 // -------------------------------------------------------------------------------------------------
 
 // Видалення продукту зі списку
-let value = 'bread';
 const newProduct = []
-let product = function () {
+let product = function (value) {
     productList.filter(elem => {
-        if (elem.name !== value) {
+        if (elem.pName !== value) {
             return newProduct.push(elem);
         }
     });
 };
-product()
+product('Fruit')
 console.log(newProduct)
 // --------------------------------------------------------------------------------------------------
 
 // Перевірка куплений продукт чи ні 
-value = 'chees';
-function check() {
-    for (let i = 0; i < productList.length; i++) {
-        if (value == productList[i].name) {
-            return true;
-        } else {
-            return false;
+let value = 'Water';
+const newArr = productList
+    .filter(elem => elem.pName === value)
+    .map(elem => {
+        if (elem.bought === true) {
+            return elem;
         }
-    }
-};
-check();
-console.log(check());
+    });
+console.log(newArr);
 // ==================================================================================================
 
 // покупка продукту
-value = 'water'
 const array = productList
-    .filter(arr => arr.name === value)
+    .filter(arr => arr.pName === value)
     .map(arr => {
         return {
-            name: value,
+            pName: value,
             bought: arr.bought
         }
     });
 console.log(array);
 // -----------------------------------------------------------------------------------------------------
-
-// пошук продукту
-let prodList = productList.find(elem => elem.name === value);
-console.log(prodList);
-
-// -----------------------------------------------------------------------------------------------------
-const newList = [];
-const addToShopList = () => {
-    let x = productList.find(elem => elem.name === value);
-    console.log(x.item)
-
-    for (let i = 0; i < productList.length; i++) {
-        if (x.name == productList[i].name) {
-            x.item += productList[i].item;
-        }else {
-            return x;
-        }
-    }
-}
-addToShopList();
-console.log(addToShopList())
-
-console.log(newList)
 
